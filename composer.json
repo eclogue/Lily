@@ -1,0 +1,19 @@
+{
+  "version": "0.1.1",
+  "autoload": {
+    "psr-4": {
+      "Lily\\": "src/"
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  },
+  "require": {
+    "symfony/yaml": "^4.1@dev",
+    "symfony/console": "^4.1@dev"
+  },
+  "minimum-stability": "dev"
+}
