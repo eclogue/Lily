@@ -1,0 +1,20 @@
+type: object
+required:
+  - username
+  - password
+  - email
+  - confirm
+properties:
+  username:
+    type: string
+    description: username range 4~
+  password:
+    type: string
+    description: 6~60
+  confirm:
+    type: string
+  email:
+    type: string
+    description: email
+xml:
+  name: Pet

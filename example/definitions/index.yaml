@@ -1,0 +1,8 @@
+Error:
+  $ref: ./Error.yaml
+Exception:
+  $ref: ./Exception.yaml
+Album:
+  $ref: ./Album.yaml
+Category:
+  $ref: ./Category.yaml

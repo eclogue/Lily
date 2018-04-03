@@ -1,0 +1,36 @@
+parameters:
+  - $ref: '#/parameters/albumId'
+put:
+  $ref: edit.yaml
+get:
+  tags:
+    - Album
+  security:
+    - Bearer: []
+  description: 获取相册详情
+  responses:
+    200:
+      description: Success
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+          data:
+            $ref: '#/definitions/Album'
+    400:
+      description: 参数错误
+      schema:
+        type: object
+        properties:
+          message:
+           type: string
+          code:
+            type: integer
+    default:
+      description: 服务器错误
+      schema:
+        type: object
+        properties:
+          message:
+            type: string

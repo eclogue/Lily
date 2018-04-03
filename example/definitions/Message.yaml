@@ -1,0 +1,53 @@
+type: object
+description: api 错误码
+properties:
+  10000:
+    type: string
+    enum:
+      - Inavailable Token
+      - token 不可用
+  10001:
+    type: string
+    enum:
+      - Illegal Token
+      - 非法 token
+  10010:
+    type: string
+    enum:
+      - Illegal Username
+      - 错误的用户名
+  10011:
+    type: string
+    enum:
+      - Illegal Email
+      - email 格式错误
+  10012:
+    type: string
+    enum:
+      - Illegal Password
+      - 密码格式错误
+  10013:
+    type: string
+    enum:
+      - Password Not Match
+      - 密码不匹配
+  10014:
+    type: string
+    enum:
+      - User Exist
+      - 用户已存在
+  10015:
+    type: string
+    enum:
+      - User Not Found
+      - 用户不存在
+  10016:
+    type: string
+    enum:
+      - Email Exist
+      - 邮箱已被占用
+  10017:
+    type: string
+    enum:
+      - Password Incorrect
+      - 密码错误

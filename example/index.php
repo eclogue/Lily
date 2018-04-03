@@ -7,13 +7,16 @@
  * @time: 下午4:41
  */
 
-require './vendor/autoload.php';
-
 define('ROOT', __DIR__);
+
+require dirname(ROOT) . '/vendor/autoload.php';
+
 
 use Lily\Parser;
 
-$root = ROOT . '/impress';
-$lily = new Parser($root, 'impress.yaml');
+$root = ROOT;
+$lily = new Parser($root, 'entry.yaml');
 
-$lily->run();
+$data = $lily->run();
+
+var_export($data);

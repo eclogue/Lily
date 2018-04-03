@@ -22,7 +22,7 @@ class Parser
     public $current  = '';
 
     public $step = 0;
-    
+
     public function __construct(string $root, string $file)
     {
         $this->root = $root;
@@ -30,6 +30,10 @@ class Parser
         $this->pointer = new \SplStack();
     }
 
+    /**
+     * @return array|mixed
+     * @throws \Exception
+     */
     public function run()
     {
         $this->current = $this->root;
@@ -43,6 +47,7 @@ class Parser
     /**
      * @param $file
      * @return mixed
+     * @throws \Exception
      */
     public function parse($file)
     {
@@ -58,10 +63,16 @@ class Parser
 
             return $document;
         } catch (\Throwable $exception) {
-            return ltrim($file, $this->root);
+            $message = $exception->getMessage();
+            throw new \Exception('File of ' . $file . ' parse error:' . $message);
         }
     }
 
+    /**
+     * @param array $child
+     * @return array
+     * @throws \Exception
+     */
     public function sniffer(array $child)
     {
         $refer = false;
@@ -70,7 +81,6 @@ class Parser
                 $info = pathinfo($node);
                 $ext = $info['extension'];
                 if ($ext === 'yaml' || $ext === 'yml') {
-                    echo "%%%%%" . $node . PHP_EOL;
                     $dirname = ltrim($info['dirname'], './');
                     $pointer = $this->current;
                     $this->pointer->push($pointer);
@@ -82,24 +92,19 @@ class Parser
                     $this->pointer->push($pointer);
                     $file = $pointer . '/' . $info['basename'];
                     $node = $this->parse($file);
-                    if ($this->pointer->count()) {
-                        $this->current = $this->pointer->pop();
-                    }
                 }
             }
 
             if (is_array($node)) {
-//                $this->pointer->push($this->current);
                 $node = $this->sniffer($node);
-                if ($refer && $this->pointer->count()) {
-                    $this->current = $this->pointer->pop();
-                    $refer = false;
-                }
-
             }
         }
 
         unset($node);
+
+        if ($refer && $this->pointer->count()) {
+            $this->current = $this->pointer->pop();
+        }
 
         return $child;
     }

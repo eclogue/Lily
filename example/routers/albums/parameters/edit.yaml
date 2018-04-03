@@ -1,0 +1,13 @@
+type: object
+properties:
+  name:
+    type: string
+  permission:
+    type: integer
+    enum:
+      - 0
+      - 1
+    description: 0可见,1不可见
+  description:
+    type: string
+    description: 相册描述

@@ -1,0 +1,19 @@
+type: object
+description: album structor
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  userId:
+    type: integer
+  cover:
+    type: string
+  description:
+    type: string
+  permission:
+    type: integer
+  createdAt:
+    type: integer
+  updatedAt:
+    type: string

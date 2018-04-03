@@ -1,0 +1,52 @@
+---
+swagger: '2.0'
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+  version: v0.1.1
+  title: knight API
+  description: |
+    20x 为成功的返回，
+    40x 为客户端错误，
+    50x 为服务端错误，
+    20x 返回 格式为 { message: 'OK', data: ... }
+    非20x 返回 { message: '错误描述', code: '详细请看 api 错误码'}
+################################################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
+host: dev.mydomain.com
+basePath: /
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+  - multipart/form-data
+################################################################################
+#                                  Security                                    #
+################################################################################
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: |
+       token 的认证需要将 token 放下请求 header 的 Authorization 里。
+       通过 api /login 登录后服务端将返回用户 token,此 token 不能让他人获取。
+       认证格式如下: Bearer: xxxxxx.yyyyyyy.zzzzzz
+################################################################################
+#                                   Tags                                       #
+################################################################################
+tags:
+  - name: Auth
+    description: 认证
+  - name: Albums
+parameters:
+  $ref: ./paramters/index.yaml
+paths:
+  $ref: ./routers/index.yaml
+definitions:
+  $ref: ./definitions/index.yaml
