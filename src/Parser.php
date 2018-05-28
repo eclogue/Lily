@@ -92,19 +92,22 @@ class Parser
                     $this->pointer->push($pointer);
                     $file = $pointer . '/' . $info['basename'];
                     $node = $this->parse($file);
+                    unset($child[$key]);
+                    $child = &$node;
                 }
             }
 
             if (is_array($node)) {
                 $node = $this->sniffer($node);
             }
+
         }
 
         unset($node);
-
         if ($refer && $this->pointer->count()) {
             $this->current = $this->pointer->pop();
         }
+
 
         return $child;
     }
